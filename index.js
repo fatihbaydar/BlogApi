@@ -1,5 +1,11 @@
 "use strict";
-
+/* -------------------------------------------------------
+  Mustafa Fatih     -- dosya klasör yapısı
+  Özkan             -- Db connection
+  Onur Emre         -- blogcategory, model, controller, router
+  Hüseyin Cem       -- errorhandler
+  Payas             -- blogpostcontroller model, router
+------------------------------------------------------- */
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
