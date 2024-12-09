@@ -216,6 +216,12 @@ app.all("/", (req, res) => {
   });
 });
 
+app.use("/blog/post", require("./src/routers/blogPost.router"))
+
+
+
+
+
 app.use("*", (req, res) => {
   res.status(404).send({ isError: true, message: "The route is NOT FOUND" });
 });

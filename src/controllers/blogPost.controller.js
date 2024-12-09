@@ -1,9 +1,10 @@
-"use strict"
+"use strict";
 
-const { BlogPost } = require("../models/blogPost.models")
-const { NotFoundError } = require("../errors/customError")
+const {BlogPost}   = require("../models/blogPost.models");
 
-module.exports.blogPost = {
+
+
+module.exports = {
     list: async (req, res) => {
         const data = await BlogPost.find().populate("categoryId");
         res.send({
@@ -17,8 +18,18 @@ module.exports.blogPost = {
         });
     },
     read: async (req, res) => {
+        const result = await BlogPost.findOne({ _id: req.params.postId });
+        if (!result) {
+            throw new NotFoundError("No matching documents found");
+        }
+        res.send({
+            isError: false,
+            result,
+        });
+    },
+    update: async (req, res) => {
         const result = await BlogPost.updateOne(
-            { _id: reqq.params.postId },
+            { _id: req.params.postId },
             req.body
         );
         res.status(202).send({
@@ -28,10 +39,15 @@ module.exports.blogPost = {
         });
     },
     delete: async (req, res) => {
-        const result = await BlogPostdeleteOne({ _id: req.params.postId });
+        const result = await BlogPost.deleteOne({ _id: req.params.postId });
+        console.log(result);
+        //deletedCount
         if (result.deletedCount === 0) {
-            throw new NotFoundError("No matching documents found");
+            // throw new NotFoundError("No matching documents found");
         }
-        res.status(204).send({ result, });
+        res.status(204).send({
+            result,
+        });
     },
 };
+
