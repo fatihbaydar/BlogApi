@@ -105,7 +105,12 @@ app.all("/", (req, res) => {
   });
 });
 
+
+app.use("/blog/post", require("./src/routers/blogPost.router"))
+
+
 app.use("/blog/category", require("./src/routers/blogCategoryRouter"))
+
 
 
 
