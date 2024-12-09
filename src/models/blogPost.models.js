@@ -23,10 +23,10 @@ const BlogPostSchema = new mongoose.Schema(
       // updatedAt // timestamps: true
     },
     {
-      collection: "blogPostsModel",
+      collection: "blogPostsMod",
       timestamps: true,
     }
   );
   
 
-  module.exports =  mongoose.model("BlogPostModel", BlogPostSchema)
+  module.exports =  mongoose.model("BlogPostMod", BlogPostSchema)
